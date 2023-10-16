@@ -19,10 +19,10 @@ function createCounter(counter) {
   let num = counter;
   return {
     increment() {
-      num ++;
+      num++;
     },
     decrement() {
-      num --;
+      num--;
     },
     getValue() {
       return num;
@@ -49,23 +49,22 @@ console.log(calculate.getValue());
 // const targetElement = findElementByClass(rootElement, 'my-class');
 // console.log(targetElement);
 
-function findElementByClass(rootElement, className) {   
-    if (rootElement.classList.contains(className)) {
-        return rootElement;
-    };
-   
-    const childrenElements = rootElement.children;
-    console.log(childrenElements);
-    for (let i = 0; i < childrenElements.length; i++) {
-        let element = findElementByClass(childrenElements[i], className);
-        if(element) {
-            return element;
-        }
-        return null;
-    };
+function findElementByClass(rootElement, className) {
+  if (rootElement.classList.contains(className)) {
+    return rootElement;
+  }
+
+  const childrenElements = rootElement.children;
+  // console.log(childrenElements);
+  for (let i = 0; i < childrenElements.length; i++) {
+    const element = findElementByClass(childrenElements[i], className);
+    if (element) {
+      return element;
+    }
+    return null;
+  }
 }
 
-const rootElement = document.querySelector('.product');
-const targetElement = findElementByClass(rootElement, 'product__text');
-
+const rootElement = document.querySelector(".product");
+const targetElement = findElementByClass(rootElement, "product__text");
 console.log(targetElement);
