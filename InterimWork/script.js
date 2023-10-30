@@ -52,15 +52,11 @@ async function saveUserData(userData) {
     body: JSON.stringify(userData),
   };
 
-  try {
-    const response = await fetch("https://reqres.in/api/users", requestOptions);
-    if (response.ok) {
-      return response.json();
-    } else {
-      throw new Error(`Ошибка запроса, код ошибки: ${response.status}`);
-    }
-  } catch (error) {
-    console.log("Ошибка:", error.message);
+  const response = await fetch("https://reqres.in/api/users", requestOptions);
+  if (response.ok) {
+    return await response.json();
+  } else {
+    throw new Error(`Ошибка запроса, код ошибки: ${response.status}`);
   }
 }
 
@@ -69,9 +65,13 @@ const user = {
   job: "unknown",
 };
 
-saveUserData(user).then(() => {
-  console.log("User data saved successfully");
-});
+saveUserData(user)
+  .then(() => {
+    console.log("User data saved successfully");
+  })
+  .catch((error) => {
+    console.log("Ошибка:", error.message);
+  });
 
 // Задание 3. Изменение стиля элемента через заданное время (выполняем, если знакомы с DOM).
 // Напишите функцию changeStyleDelayed, которая принимает id элемента и время задержки (в миллисекундах) в качестве аргументов. Функция должна изменить стиль (любой, например - цвет текста) элемента через указанное время.
